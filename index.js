@@ -49,10 +49,12 @@ form.addEventListener('submit',(e)=>{
     cell2.textContent=prénom;
     cell3.textContent=tel;
     cell4.textContent=profession;
-   
+  
+   saveToLocalStorage();
     form.reset();
 
 
 
 
 })
+
