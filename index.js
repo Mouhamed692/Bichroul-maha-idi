@@ -1,4 +1,33 @@
 const form=document.getElementById('form');
+  
+const table = document.getElementById('table').getElementsByTagName('tbody')[0];
+
+
+function saveToLocalStorage() {
+    const rows = Array.from(table.rows).map(row => ({
+        nom: row.cells[0].textContent,
+        prénom: row.cells[1].textContent,
+        tel: row.cells[2].textContent,
+        profession: row.cells[3].textContent
+    }));
+    localStorage.setItem('tableData', JSON.stringify(rows));
+}
+function loadFromLocalStorage() {
+    const data = JSON.parse(localStorage.getItem('tableData') || '[]');
+    data.forEach(item => {
+        const newRow = table.insertRow();
+        newRow.insertCell(0).textContent = item.nom;
+        newRow.insertCell(1).textContent = item.prénom;
+        newRow.insertCell(2).textContent = item.tel;
+        newRow.insertCell(3).textContent = item.profession;
+    });
+}
+
+
+window.addEventListener('DOMContentLoaded', loadFromLocalStorage);
+
+
+
 form.addEventListener('submit',(e)=>{
     e.preventDefault();
     const nom=document.getElementById('nom').value.trim();
@@ -22,6 +51,7 @@ form.addEventListener('submit',(e)=>{
     cell4.textContent=profession;
    
     form.reset();
+
 
 
 
