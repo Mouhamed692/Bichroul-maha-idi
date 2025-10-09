@@ -60,9 +60,7 @@ form.addEventListener('submit',(e)=>{
     cell3.textContent=tel;
     cell4.textContent=profession;
     
-    await
-    addDoc(collection(dd,"employes"),
-nom,prénom,tel,profession);
+    await addDoc(collection(dd,"employes"),nom,prénom,tel,profession);
    
 
     form.reset();
@@ -128,4 +126,5 @@ onSnapshot(collection(db,"employes"), (snapshot)=> {
 </body>
 
 </html>
+
 
