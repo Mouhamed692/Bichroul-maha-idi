@@ -6,6 +6,79 @@
     <title> cellule BMH</title>
     <link rel="stylesheet" href="index.css">
     <script src="index.js" defer></script>
+     <script type="module">
+        // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAMXY1FrStYYiOdnh_YumiGGG3rPVnIcFI",
+  authDomain: "entreprise-staff.firebaseapp.com",
+  projectId: "entreprise-staff",
+  storageBucket: "entreprise-staff.firebasestorage.app",
+  messagingSenderId: "77300040959",
+  appId: "1:77300040959:web:99da1104e2b60d6d7538ca",
+  measurementId: "G-XNKY16NNXX"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+
+const form=document.querySelector('form');
+
+
+form.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    const nom=document.getElementById('nom').value.trim();
+    const prénom=document.getElementById('prénom').value.trim();
+    const tel=document.getElementById('tel').value.trim();
+    const profession=document.getElementById('profession').value.trim();
+    
+    if(!nom || !prénom || !tel || !profession){
+        alert('Veuillez remplir tous les champs');
+        return;
+    }
+
+
+   const table=document.getElementById('tableau').getElementsByTagName('tbody')[0];
+   
+    
+    const newRow= table.insertRow();
+    const cell1=newRow.insertCell(0);
+    const cell2=newRow.insertCell(1);
+    const cell3=newRow.insertCell(2);
+    const cell4=newRow.insertCell(3);
+    
+    cell1.textContent=nom;
+    cell2.textContent=prénom;
+    cell3.textContent=tel;
+    cell4.textContent=profession;
+   
+
+    form.reset();
+    
+});
+onSnapshot(collection(db,"employes"), (snapshot)=> {
+    table.textContent= "";
+    snapshot.forEach((doc)=>{
+        const data = doc.data();
+        table.textContent += `<tr><td>${data.nom}</td>
+            <td>${data.prénom}</td>
+            <td>${data.tel}</td>
+            <td>${data.profession}</td>  </td> </tr>`
+    });
+});
+
+
+    </script>
+
+    
 
 </head>
 <body>
@@ -49,4 +122,5 @@
     </form>
     
 </body>
+
 </html>
