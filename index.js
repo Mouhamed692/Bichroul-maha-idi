@@ -1,7 +1,7 @@
 const form=document.getElementById('form');
   
 
-form.addEventListener('submit',(e)=>{
+form.addEventListener('submit', (e)=>{
     e.preventDefault();
     const nom=document.getElementById('nom').value.trim();
     const prénom=document.getElementById('prénom').value.trim();
@@ -30,5 +30,6 @@ form.addEventListener('submit',(e)=>{
 
 
 })
+
 
 
